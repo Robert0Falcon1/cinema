@@ -1,0 +1,117 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' ==== ENTITÀ PRINCIPALI ====
+class Cliente {
+  +id: str
+  +nome: str
+  +email: str
+}
+
+class Film {
+  +id: str
+  +titolo: str
+  +durata_min: int
+}
+
+class SalaCinema {
+  +id: str
+  +nome: str
+  +righe: int
+  +colonne: int
+  +posti_totali(): int
+}
+
+class Spettacolo {
+  +id: str
+  +film_id: str
+  +sala_id: str
+  +inizio: datetime
+  +prezzo_eur: float
+}
+
+class Posto {
+  +id: str
+  +riga: int
+  +colonna: int
+  +etichetta(): str
+}
+
+enum StatoPosto {
+  LIBERO
+  BLOCCATO
+  VENDUTO
+}
+
+class DisponibilitaPosti {
+  +spettacolo_id: str
+  +posto_id: str
+  +stato: StatoPosto
+  +hold_scadenza: datetime?
+}
+
+enum StatoOrdine {
+  CREATO
+  IN_PAGAMENTO
+  PAGATO
+  ANNULLATO
+}
+
+class OrdineAcquisto {
+  +id: str
+  +cliente_id: str
+  +spettacolo_id: str
+  +posto_id: str
+  +totale_eur: float
+  +stato: StatoOrdine
+  +creato_il: datetime
+}
+
+enum EsitoPagamento {
+  AUTORIZZATO
+  RIFIUTATO
+  ANNULLATO
+}
+
+class Pagamento {
+  +id: str
+  +ordine_id: str
+  +provider: str
+  +importo_eur: float
+  +esito: EsitoPagamento
+  +transaction_ref: str?
+  +ricevuto_il: datetime?
+}
+
+class Biglietto {
+  +id: str
+  +ordine_id: str
+  +qr_code: str
+  +emesso_il: datetime
+}
+
+class IscrizioneListaAttesa {
+  +id: str
+  +cliente_id: str
+  +spettacolo_id: str
+  +creata_il: datetime
+  +notificato: bool
+}
+
+' ==== RELAZIONI ====
+Cliente "1" --> "0..*" OrdineAcquisto
+Cliente "1" --> "0..*" IscrizioneListaAttesa
+
+Film "1" --> "0..*" Spettacolo
+SalaCinema "1" --> "0..*" Spettacolo
+SalaCinema "1" --> "1..*" Posto
+
+Spettacolo "1" --> "0..*" DisponibilitaPosti
+Posto "1" --> "0..*" DisponibilitaPosti
+
+OrdineAcquisto "1" --> "0..1" Pagamento
+OrdineAcquisto "1" --> "0..1" Biglietto
+
+IscrizioneListaAttesa "0..*" --> "1" Spettacolo
+
+@enduml

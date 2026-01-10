@@ -1,0 +1,15 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(customer, "Cliente", "Acquista biglietti, seleziona posti, riceve biglietti.")
+System(ticketing, "Sistema di Ticketing", "Gestisce spettacoli, posti, ordini e biglietti.")
+System_Ext(psp, "Provider pagamento", "Elabora i pagamenti.")
+System_Ext(notify, "Servizio notifiche", "Invio notifiche e biglietti (email/push/sms).")
+
+Rel(customer, ticketing, "Si interfaccia con", "HTTPS")
+Rel(customer, psp, "Utilizza per pagare", "Web/App")
+Rel(psp, ticketing, "Invia esito pagamento a", "Webhook/Callback")
+Rel(ticketing, notify, "Utilizza", "API")
+Rel(notify, customer, "Invia notifiche e biglietti a", "Email/Push/SMS")
+
+@enduml

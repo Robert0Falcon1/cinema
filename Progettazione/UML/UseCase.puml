@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Cliente" as Cliente
+actor "Provider pagamento" as PSP
+actor "Servizio notifiche" as Notifiche
+
+rectangle "Sistema di Ticketing" {
+
+  usecase "Consulta spettacoli" as UC_Consultare
+  usecase "Seleziona spettacolo\n(titolo/sala/orario)" as UC_Selezionare
+  usecase "Verifica disponibilità posti" as UC_Disponibilita
+  usecase "Seleziona posto" as UC_Posto
+  usecase "Blocca posto" as UC_Hold
+  usecase "Crea ordine di acquisto" as UC_Ordine
+  usecase "Avvia pagamento" as UC_AvvioPagamento
+  usecase "Riceve esito pagamento (webhook)" as UC_Webhook
+  usecase "Emette biglietti" as UC_Emettere
+  usecase "Invia biglietti e notifiche" as UC_Inviare
+
+  usecase "Iscrive alla lista d'attesa" as UC_Waitlist
+  usecase "Riceve notifica asincrona\n(posti disponibili)" as UC_NotifyAsync
+  usecase "Sceglie spettacolo alternativo" as UC_Alternativo
+}
+
+Cliente --> UC_Consultare
+Cliente --> UC_Selezionare
+Cliente --> UC_Posto
+Cliente --> UC_AvvioPagamento
+Cliente --> UC_Waitlist
+Cliente --> UC_Alternativo
+Cliente --> UC_NotifyAsync
+
+UC_Selezionare --> UC_Disponibilita : <<include>>
+UC_Posto --> UC_Disponibilita : <<include>>
+UC_Posto --> UC_Hold : <<include>>
+UC_AvvioPagamento --> UC_Ordine : <<include>>
+
+' Pagamento: il cliente usa il PSP, il sistema riceve l'esito via webhook
+Cliente --> PSP : checkout
+PSP --> UC_Webhook
+
+UC_Webhook --> UC_Emettere : <<include>>
+UC_Emettere --> UC_Inviare : <<include>>
+
+' Notifiche: il sistema usa il servizio notifiche
+UC_Inviare --> Notifiche : <<include>>
+
+' Caso no posti: lista d'attesa e notifica asincrona
+UC_Disponibilita ..> UC_Waitlist : <<extend>>\n(se non ci sono posti)
+UC_Waitlist ..> UC_NotifyAsync : <<extend>>\n(quando si libera un posto)
+UC_Disponibilita ..> UC_Alternativo : <<extend>>\n(se non ci sono posti)
+
+@enduml

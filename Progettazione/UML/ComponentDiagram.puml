@@ -1,0 +1,63 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+package "Sistema di Ticketing" {
+  
+  [API di ticketing\n(FastAPI)] as API
+  [Gestore di acquisto] as Gestore
+  [Gestore webhook pagamenti] as Webhook
+
+  [Servizio spettacoli] as Spettacoli
+  [Servizio posti] as Posti
+  [Servizio ordini] as Ordini
+  [Servizio biglietti] as Biglietti
+  [Servizio lista d'attesa] as ListaAttesa
+
+  [Adattatore pagamenti] as Pagamenti
+  [Adattatore notifiche] as NotificheAdapter
+
+  interface "Gestione spettacoli" as GestioneSpettacoli
+  interface "Gestione posti" as GestionePosti
+  interface "Gestione ordini" as GestioneOrdini
+  interface "Gestione biglietti" as GestioneBiglietti
+  interface "Gestione lista d'attesa" as GestioneListaAttesa
+  interface "Gateway pagamenti" as GatewayPagamenti
+  interface "Gateway notifiche" as GatewayNotifiche
+
+  API --> Gestore : invoca (REST)
+  Webhook --> Ordini : aggiorna esito pagamento
+
+  Gestore --> Spettacoli : usa
+  Gestore --> Posti : usa
+  Gestore --> Ordini : usa
+  Gestore --> Biglietti : usa
+  Gestore --> ListaAttesa : usa
+  Gestore --> Pagamenti : usa
+  Gestore --> NotificheAdapter : usa
+
+  Spettacoli ..|> GestioneSpettacoli
+  Posti ..|> GestionePosti
+  Ordini ..|> GestioneOrdini
+  Biglietti ..|> GestioneBiglietti
+  ListaAttesa ..|> GestioneListaAttesa
+  Pagamenti ..|> GatewayPagamenti
+  NotificheAdapter ..|> GatewayNotifiche
+}
+
+database "Database MySQL" as DB
+Spettacoli --> DB : SQL
+Posti --> DB : SQL
+Ordini --> DB : SQL
+Biglietti --> DB : SQL
+ListaAttesa --> DB : SQL
+
+cloud "Provider pagamento" as PSP
+cloud "Servizio notifiche" as ServizioNotifiche
+
+Pagamenti --> PSP : Redirect/Link checkout
+PSP --> Webhook : Webhook esito pagamento (HTTPS)
+
+NotificheAdapter --> ServizioNotifiche : API invio notifiche
+
+@enduml

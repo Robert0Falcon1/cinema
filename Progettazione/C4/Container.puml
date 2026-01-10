@@ -1,0 +1,33 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(customer, "Cliente", "Acquista biglietti e riceve notifiche.")
+
+System_Boundary(s1, "Sistema di Ticketing") {
+  Container(appMobile, "App mobile", "Android/iOS", "Prenotazione e acquisto biglietti")
+  Container(appWeb, "App web", "Browser", "Prenotazione e acquisto biglietti")
+  Container(api, "API di ticketing", "Python + FastAPI", "Gestione spettacoli, posti, ordini, biglietti e callback dei pagamenti")
+  Container(gestoreNotifiche, "Servizio notifiche e lista d'attesa", "Python (coda/schedulazione)", "Gestisce notifiche asincrone e la lista d'attesa per gli spettacoli senza posti disponibili")
+  ContainerDb(db, "Database", "MySQL", "Spettacoli, posti, ordini, biglietti, lista d'attesa")
+}
+
+System_Ext(psp, "Provider pagamento", "Elabora pagamenti (checkout ospitato)")
+System_Ext(servizioNotifiche, "Servizio notifiche", "Email / Push / SMS")
+
+Rel(customer, appMobile, "Usa")
+Rel(customer, appWeb, "Usa")
+
+Rel(appMobile, api, "Chiama", "HTTPS/REST")
+Rel(appWeb, api, "Chiama", "HTTPS/REST")
+
+Rel(api, db, "Legge/Scrive", "SQL")
+Rel(gestoreNotifiche, db, "Legge/Scrive", "SQL")
+
+Rel(customer, psp, "Utilizza per pagare", "Redirect / Checkout ospitato")
+Rel(psp, api, "Invia esito pagamento a", "Webhook / HTTPS")
+
+Rel(api, servizioNotifiche, "Utilizza", "API")
+Rel(gestoreNotifiche, servizioNotifiche, "Utilizza", "API")
+Rel(servizioNotifiche, customer, "Invia notifiche e biglietti a", "Email / Push / SMS")
+
+@enduml

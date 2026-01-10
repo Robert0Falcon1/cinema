@@ -1,0 +1,47 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(api, "API di ticketing (Python + FastAPI)") {
+
+  Component(gestoreApi, "Gestore API pubbliche", "FastAPI", "Endpoint per consultazione spettacoli, disponibilità posti e gestione acquisto")
+  Component(gestoreWebhook, "Gestore webhook pagamenti", "FastAPI", "Riceve l'esito del pagamento dal provider pagamento e aggiorna l'ordine")
+
+  Component(gestore, "Gestore di acquisto", "Servizio applicativo", "Coordina il flusso di acquisto (posti, ordini, biglietti)")
+  Component(servizioSpettacoli, "Servizio spettacoli", "Servizio", "Ricerca spettacoli")
+  Component(servizioPosti, "Servizio posti", "Servizio", "Disponibilità, blocco temporaneo e vendita posto")
+  Component(servizioOrdini, "Servizio ordini", "Servizio", "Creazione e aggiornamento ordini (stati)")
+  Component(servizioBiglietti, "Servizio biglietti", "Servizio", "Genera biglietti")
+
+  Component(adattatorePagamenti, "Adattatore pagamenti", "Adapter", "Avvio checkout sul provider pagamento (redirect/link)")
+  Component(adattatoreNotifiche, "Adattatore notifiche", "Adapter", "Invio biglietti e notifiche al servizio notifiche")
+  Component(servizioListaAttesa, "Servizio lista d'attesa", "Servizio", "Iscrizioni e gestione notifiche di disponibilità posti")
+
+  ComponentDb(db, "Database", "MySQL", "Persistenza (spettacoli, posti, ordini, biglietti, lista d'attesa)")
+}
+
+System_Ext(psp, "Provider pagamento", "Elabora i pagamenti")
+System_Ext(notify, "Servizio notifiche", "Invio notifiche e biglietti (email/push/sms)")
+
+Rel(gestoreApi, gestore, "invoca")
+Rel(gestoreWebhook, servizioOrdini, "aggiorna stato ordine")
+
+Rel(gestore, servizioSpettacoli, "usa")
+Rel(gestore, servizioPosti, "usa")
+Rel(gestore, servizioOrdini, "usa")
+Rel(gestore, servizioBiglietti, "usa")
+Rel(gestore, adattatorePagamenti, "usa")
+Rel(gestore, servizioListaAttesa, "usa")
+Rel(gestore, adattatoreNotifiche, "usa")
+
+Rel(adattatorePagamenti, psp, "avvia checkout", "Redirect/Link")
+Rel(psp, gestoreWebhook, "invia esito pagamento a", "Webhook/HTTPS")
+
+Rel(adattatoreNotifiche, notify, "utilizza", "API")
+
+Rel(servizioSpettacoli, db, "SQL")
+Rel(servizioPosti, db, "SQL")
+Rel(servizioOrdini, db, "SQL")
+Rel(servizioBiglietti, db, "SQL")
+Rel(servizioListaAttesa, db, "SQL")
+
+@enduml

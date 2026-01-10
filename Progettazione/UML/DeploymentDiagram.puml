@@ -1,0 +1,35 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+node "Computer\n(Browser)" as Laptop
+node "Smartphone\n(App mobile Android/iOS)" as Mobile
+
+node "Server Linux\nOS: Ubuntu/Debian\nRisorse: 4 vCPU, 8 GB RAM" as Linux {
+  artifact "API di ticketing\n(FastAPI)" as FastAPI
+  artifact "Servizio notifiche e lista d'attesa\n(coda/schedulazione)" as AsyncService
+}
+
+database "MySQL\n(cinemadb)\nPorta: 3306" as MySQL
+
+cloud "Provider pagamento\n(Checkout ospitato)" as PSP
+cloud "Servizio notifiche\n(Email/Push/SMS)" as Notify
+
+Laptop --> FastAPI : HTTPS/REST
+Mobile --> FastAPI : HTTPS/REST
+
+FastAPI --> MySQL : SQL/TCP 3306
+AsyncService --> MySQL : SQL/TCP 3306
+
+' pagamento: cliente -> PSP, PSP -> webhook su FastAPI
+Laptop --> PSP : Redirect/Checkout
+Mobile --> PSP : Redirect/Checkout
+PSP --> FastAPI : Webhook esito pagamento (HTTPS)
+
+' notifiche: sistema -> servizio notifiche -> cliente
+FastAPI --> Notify : API invio biglietti/notifiche
+AsyncService --> Notify : API notifica asincrona (lista d'attesa)
+Notify --> Laptop : Email/Push
+Notify --> Mobile : Push/SMS/Email
+
+@enduml

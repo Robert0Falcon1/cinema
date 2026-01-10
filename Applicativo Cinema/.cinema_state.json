@@ -1,0 +1,426 @@
+{
+  "version": 1,
+  "clienti": [
+    {
+      "id": "c1",
+      "nome": "Mario Rossi",
+      "email": "mario.rossi@example.com"
+    },
+    {
+      "id": "c2",
+      "nome": "Giulia Bianchi",
+      "email": "giulia.bianchi@example.com"
+    }
+  ],
+  "films": [
+    {
+      "id": "f1",
+      "titolo": "Interstellar",
+      "durata_min": 169
+    },
+    {
+      "id": "f2",
+      "titolo": "Inception",
+      "durata_min": 148
+    }
+  ],
+  "sale": [
+    {
+      "id": "s1",
+      "nome": "1",
+      "righe": 4,
+      "colonne": 5
+    }
+  ],
+  "posti": [
+    {
+      "id": "p1",
+      "riga": 1,
+      "colonna": 1
+    },
+    {
+      "id": "p2",
+      "riga": 1,
+      "colonna": 2
+    },
+    {
+      "id": "p3",
+      "riga": 1,
+      "colonna": 3
+    },
+    {
+      "id": "p4",
+      "riga": 1,
+      "colonna": 4
+    },
+    {
+      "id": "p5",
+      "riga": 1,
+      "colonna": 5
+    },
+    {
+      "id": "p6",
+      "riga": 2,
+      "colonna": 1
+    },
+    {
+      "id": "p7",
+      "riga": 2,
+      "colonna": 2
+    },
+    {
+      "id": "p8",
+      "riga": 2,
+      "colonna": 3
+    },
+    {
+      "id": "p9",
+      "riga": 2,
+      "colonna": 4
+    },
+    {
+      "id": "p10",
+      "riga": 2,
+      "colonna": 5
+    },
+    {
+      "id": "p11",
+      "riga": 3,
+      "colonna": 1
+    },
+    {
+      "id": "p12",
+      "riga": 3,
+      "colonna": 2
+    },
+    {
+      "id": "p13",
+      "riga": 3,
+      "colonna": 3
+    },
+    {
+      "id": "p14",
+      "riga": 3,
+      "colonna": 4
+    },
+    {
+      "id": "p15",
+      "riga": 3,
+      "colonna": 5
+    },
+    {
+      "id": "p16",
+      "riga": 4,
+      "colonna": 1
+    },
+    {
+      "id": "p17",
+      "riga": 4,
+      "colonna": 2
+    },
+    {
+      "id": "p18",
+      "riga": 4,
+      "colonna": 3
+    },
+    {
+      "id": "p19",
+      "riga": 4,
+      "colonna": 4
+    },
+    {
+      "id": "p20",
+      "riga": 4,
+      "colonna": 5
+    }
+  ],
+  "spettacoli": [
+    {
+      "id": "sp1",
+      "film_id": "f1",
+      "sala_id": "s1",
+      "inizio": "2026-01-10T17:39:58.403376",
+      "prezzo_eur": 9.9
+    },
+    {
+      "id": "sp2",
+      "film_id": "f2",
+      "sala_id": "s1",
+      "inizio": "2026-01-10T20:39:58.403376",
+      "prezzo_eur": 8.5
+    }
+  ],
+  "disponibilita": [
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p1",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p2",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p3",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p4",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p5",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p6",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p7",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p8",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p9",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p10",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p11",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p12",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p13",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p14",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p15",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p16",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p17",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p18",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p19",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp1",
+      "posto_id": "p20",
+      "stato": "LIBERO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p1",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p2",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p3",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p4",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p5",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p6",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p7",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p8",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p9",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p10",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p11",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p12",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p13",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p14",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p15",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p16",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p17",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p18",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p19",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    },
+    {
+      "spettacolo_id": "sp2",
+      "posto_id": "p20",
+      "stato": "VENDUTO",
+      "hold_scadenza": null
+    }
+  ],
+  "ordini": [
+    {
+      "id": "ord_416662a1c51a",
+      "cliente_id": "c1",
+      "spettacolo_id": "sp1",
+      "posto_id": "p1",
+      "totale_eur": 9.9,
+      "stato": "PAGATO",
+      "creato_il": "2026-01-10T14:40:03.581125"
+    }
+  ],
+  "pagamenti": [
+    {
+      "id": "pay_7d596d2ba205",
+      "ordine_id": "ord_416662a1c51a",
+      "provider": "MockPay",
+      "importo_eur": 9.9,
+      "esito": "AUTORIZZATO",
+      "transaction_ref": "MockPay-CHK-ord_416662a1c51a-1768052403",
+      "ricevuto_il": "2026-01-10T14:40:34.051132"
+    }
+  ],
+  "biglietti": [
+    {
+      "id": "tkt_b12b9364a387",
+      "ordine_id": "ord_416662a1c51a",
+      "qr_code": "fnZqYnUBW-lr4a8bivyYWg",
+      "emesso_il": "2026-01-10T14:40:34.051458"
+    }
+  ],
+  "waitlist": []
+}
