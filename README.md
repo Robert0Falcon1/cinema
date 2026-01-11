@@ -40,23 +40,37 @@ Applicazione Python da linea di comando per la gestione di acquisti di biglietti
 
 ## 🚀 Installazione
 
-1. **Clona o scarica il progetto**:
+1. **Naviga nella cartella del progetto**:
    ```bash
-   cd /path/to/Applicativo\ Cinema
+   cd "Applicativo Cinema"
    ```
 
 2. **Verifica la struttura**:
    ```
-   Applicativo Cinema/
-   ├── main.py
-   └── cinema_ticketing/
-       ├── __init__.py
-       ├── domain.py
-       ├── repositories.py
-       ├── adapters.py
-       ├── persistence.py
-       ├── services.py
-       └── app.py
+   .
+   ├── Applicativo Cinema/
+   │   ├── cinema_ticketing/
+   │   │   ├── __init__.py
+   │   │   ├── adapters.py
+   │   │   ├── app.py
+   │   │   ├── domain.py
+   │   │   ├── persistence.py
+   │   │   ├── repositories.py
+   │   │   └── services.py
+   │   └── main.py
+   ├── Progettazione/
+   │   ├── BPMN/
+   │   │   └── BusinessProcess.bpmn
+   │   ├── C4/
+   │   │   ├── Component.puml
+   │   │   ├── Container.puml
+   │   │   └── Context.puml
+   │   └── UML/
+   │       ├── ClassDiagram.puml
+   │       ├── ComponentDiagram.puml
+   │       ├── DeploymentDiagram.puml
+   │       └── UseCase.puml
+   └── README.md
    ```
 
 3. **Nessuna installazione necessaria** (Python puro)
@@ -291,10 +305,10 @@ python3 main.py list-shows
 
 ### Errore: `ModuleNotFoundError: No module named 'cinema_ticketing'`
 
-Assicurati di eseguire i comandi dalla cartella radice del progetto:
+Assicurati di eseguire i comandi dalla cartella `Applicativo Cinema/`:
 
 ```bash
-cd /path/to/Applicativo\ Cinema
+cd "Applicativo Cinema"
 python3 main.py list-shows
 ```
 
