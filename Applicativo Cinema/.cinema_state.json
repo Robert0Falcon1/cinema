@@ -139,14 +139,14 @@
       "id": "sp1",
       "film_id": "f1",
       "sala_id": "s1",
-      "inizio": "2026-01-10T17:39:58.403376",
+      "inizio": "2026-01-11T13:05:02.650487",
       "prezzo_eur": 9.9
     },
     {
       "id": "sp2",
       "film_id": "f2",
       "sala_id": "s1",
-      "inizio": "2026-01-10T20:39:58.403376",
+      "inizio": "2026-01-11T16:05:02.650487",
       "prezzo_eur": 8.5
     }
   ],
@@ -154,7 +154,7 @@
     {
       "spettacolo_id": "sp1",
       "posto_id": "p1",
-      "stato": "VENDUTO",
+      "stato": "LIBERO",
       "hold_scadenza": null
     },
     {
@@ -392,35 +392,8 @@
       "hold_scadenza": null
     }
   ],
-  "ordini": [
-    {
-      "id": "ord_416662a1c51a",
-      "cliente_id": "c1",
-      "spettacolo_id": "sp1",
-      "posto_id": "p1",
-      "totale_eur": 9.9,
-      "stato": "PAGATO",
-      "creato_il": "2026-01-10T14:40:03.581125"
-    }
-  ],
-  "pagamenti": [
-    {
-      "id": "pay_7d596d2ba205",
-      "ordine_id": "ord_416662a1c51a",
-      "provider": "MockPay",
-      "importo_eur": 9.9,
-      "esito": "AUTORIZZATO",
-      "transaction_ref": "MockPay-CHK-ord_416662a1c51a-1768052403",
-      "ricevuto_il": "2026-01-10T14:40:34.051132"
-    }
-  ],
-  "biglietti": [
-    {
-      "id": "tkt_b12b9364a387",
-      "ordine_id": "ord_416662a1c51a",
-      "qr_code": "fnZqYnUBW-lr4a8bivyYWg",
-      "emesso_il": "2026-01-10T14:40:34.051458"
-    }
-  ],
+  "ordini": [],
+  "pagamenti": [],
+  "biglietti": [],
   "waitlist": []
 }
